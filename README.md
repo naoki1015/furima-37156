@@ -41,10 +41,10 @@
 
 | Column          | Type         | Options                        |
 | --------------- | ------------ | ------------------------------ |
-| post_code       | integer      | null: false                    |
-| prefecture_id   | string       | null: false                    |
+| post_code       | string       | null: false                    |
+| prefecture_id   | integer      | null: false                    |
 | municipality    | string       | null: false                    |
-| house_number    | string       | null: false                     |
+| house_number    | string       | null: false                    |
 | building        | string       |                                |
 | phone_number    | string       | null: false                    |
 | purchase_record | references   | null: false, foreign_key: true |
