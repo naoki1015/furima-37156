@@ -27,7 +27,7 @@
 | category_id        | integer       | null: false                    |
 | status_id          | integer       | null: false                    |
 | shopping_charge_id | integer       | null: false                    |          
-| consignor_id       | integer       | null: false                    |
+| prefecture_id      | integer       | null: false                    |
 | deadline_id        | integer       | null: false                    |
 | price              | integer       | null: false                    |
 | user               | references    | null: false, foreign_key: true |
@@ -42,10 +42,10 @@
 | Column          | Type         | Options                        |
 | --------------- | ------------ | ------------------------------ |
 | post_code       | integer      | null: false                    |
-| prefecture      | string       | null: false                    |
+| prefecture_id   | string       | null: false                    |
 | municipality    | string       | null: false                    |
-| house_number    | integer      | null: false                    |
-| building        | string       | null: false                    |
+| house_number    | string       | null: false                     |
+| building        | string       |                                |
 | phone_number    | string       | null: false                    |
 | purchase_record | references   | null: false, foreign_key: true |
 
