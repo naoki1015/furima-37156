@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shopping_charge
   belongs_to :status
+  has_one_attached :image
 
   validates :name, :explanation, :price, presence: true
 
