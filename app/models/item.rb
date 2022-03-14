@@ -9,6 +9,9 @@ class Item < ApplicationRecord
 
   validates :name, :explanation, :price, presence: true
 
+  PRICE_REGEX = /\A\[0-9]+\z/.freeze
+  validates_format_of :price, with: PRICE_REGEX
+
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :deadline_id, numericality: { other_than: 1 , message: "can't be blank"}
