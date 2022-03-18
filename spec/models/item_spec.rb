@@ -5,10 +5,10 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
   end
 
- describe '商品出品登録' do
+  describe '商品出品登録' do
     context '商品登録内容に問題ない場合' do
       it 'name,explanation,category_id,status_id,shopping_charge_id,prefecture_id,deadline_id,price,imageがあれば登録できる' do
-      expect(@item).to be_valid
+        expect(@item).to be_valid
       end
     end
 
@@ -61,28 +61,28 @@ RSpec.describe Item, type: :model do
       it 'priceが英字では登録できない' do
         @item.price = 'abc'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is invalid"
+        expect(@item.errors.full_messages).to include 'Price is invalid'
       end
       it 'priceの値が全角数字では登録できない' do
-        @item.price = "１２３"
+        @item.price = '１２３'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is invalid"
+        expect(@item.errors.full_messages).to include 'Price is invalid'
       end
       it 'priceの値が299以下では登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is invalid"
+        expect(@item.errors.full_messages).to include 'Price is invalid'
       end
       it 'priceの値が10000000以上では登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is invalid"
+        expect(@item.errors.full_messages).to include 'Price is invalid'
       end
       it 'ユーザーが紐づいてないと商品は登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
- end
+  end
 end
