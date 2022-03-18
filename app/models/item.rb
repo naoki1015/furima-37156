@@ -9,10 +9,7 @@ class Item < ApplicationRecord
 
   validates :name, :explanation, :price, presence: true
 
-  PRICE_REGEX = /\A\[0-9]+\z/.freeze
-  validates_format_of :price, with: PRICE_REGEX
-
-  validates :price, numericality:{in: 300..9999999}
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
 
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
