@@ -12,6 +12,10 @@ RSpec.describe PurchaseRecordAddress, type: :model do
       it 'post_code,prefecture_id,municipality,house_number,phone_number,user_id,item_id,tokenがあれば登録できる' do
         expect(@purchase_record_address).to be_valid
       end
+      it '建物名が空でも購入できる' do
+        @purchase_record_address.building = ''
+        expect(@purchase_record_address).to be_valid
+      end
     end
     context '商品購入内容に問題がある場合' do
       it 'user_idがなければ登録できない' do
@@ -59,8 +63,13 @@ RSpec.describe PurchaseRecordAddress, type: :model do
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include "Phone number can't be blank"
       end
-      it 'phone_numberは10桁以上11桁以内のハイフンなしでなければ登録できない' do
-        @purchase_record_address.phone_number = '090-1111-1111'
+      it 'phone_numberは9桁以下では購入できない' do
+        @purchase_record_address.phone_number = '090123456'
+        @purchase_record_address.valid?
+        expect(@purchase_record_address.errors.full_messages).to include 'Phone number is invalid'
+      end
+      it 'phone_numberは12桁以上では購入できない' do
+        @purchase_record_address.phone_number = '090111122222'
         @purchase_record_address.valid?
         expect(@purchase_record_address.errors.full_messages).to include 'Phone number is invalid'
       end
